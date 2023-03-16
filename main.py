@@ -1,7 +1,5 @@
 from datetime import datetime
-# from multiprocessing import managers
 import sqlite3
-# from this import d
 connection = sqlite3.connect('competency_info.db')
 cursor = connection.cursor()
 t_date = datetime.today()
@@ -98,7 +96,7 @@ def edit_user(user_email, user_password, u_id):
                         print('\n<!The user must contain a first name!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_fname=? WHERE user_id=?;", (new_fname), (u_id))
+                        cursor.execute("UPDATE Users SET u_fname=? WHERE user_id=?;", (new_fname), (u_id))
                         print("\nFirst name updated successfully.")
                         break
 
@@ -110,7 +108,7 @@ def edit_user(user_email, user_password, u_id):
                         print('\n<!The user must contain a last name!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_lname=? WHERE user_id=?;", (new_lname), (u_id))
+                        cursor.execute("UPDATE Users SET u_lname=? WHERE user_id=?;", (new_lname), (u_id))
                         print("\nLast name updated succesfully.")
                         break
 
@@ -126,7 +124,7 @@ def edit_user(user_email, user_password, u_id):
                         print("\n<!Please exclude all special characters!>")
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_phone=? WHERE user_id=?;", (new_phone, u_id))
+                        cursor.execute("UPDATE Users SET u_phone=? WHERE user_id=?;", (new_phone, u_id))
                         print("\nPhone number updated successfully.")
                         break
 
@@ -147,7 +145,7 @@ def edit_user(user_email, user_password, u_id):
                         print('\n<!The email must be unique!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_email=? WHERE user_id=?;", (new_email, u_id))
+                        cursor.execute("UPDATE Users SET u_email=? WHERE user_id=?;", (new_email, u_id))
                         print("\nUser email updated successfully.")
 
 
@@ -168,7 +166,7 @@ def edit_user(user_email, user_password, u_id):
                         print('\n<!The user password must be unique!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_password=? WHERE user_id=?;", (u_password, u_id))
+                        cursor.execute("UPDATE Users SET u_password=? WHERE user_id=?;", (u_password, u_id))
                         print("\nPassword updated successfully")
                         break
 
@@ -418,10 +416,10 @@ def add_user():
         else:
             break
 
-    # query = ("INSERT INTO Users (user_id, u_fname, u_lname, u_phone, u_email, u_password, date_created, date_hired, is_manager) VALUES (?,?,?,?,?,?,?,?,?)")
-    # values = (u_id, u_fname, u_lname, u_phone, u_email, hashed, d_string, date_hired, is_manager)
-    # cursor.execute(query, values)
-    # connection.commit()
+    query = ("INSERT INTO Users (user_id, u_fname, u_lname, u_phone, u_email, u_password, date_created, date_hired, is_manager) VALUES (?,?,?,?,?,?,?,?,?)")
+    values = (u_id, u_fname, u_lname, u_phone, u_email, u_password, d_string, date_hired, is_manager)
+    cursor.execute(query, values)
+    connection.commit()
 
     print('\nUser Created!')
 
@@ -787,7 +785,7 @@ def man_edit_user():
                     print('\n<!The new ID must be unique!>')
                     continue
                 else:
-                    # cursor.execute("UPDATE Users SET user_id=? WHERE user_id=?;", (new_id, user_to_edit))
+                    cursor.execute("UPDATE Users SET user_id=? WHERE user_id=?;", (new_id, user_to_edit))
                     print("\nUser ID updated successfully.")
             
 
@@ -798,7 +796,7 @@ def man_edit_user():
                         print('\n<!The user must contain a first name!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_fname=? WHERE user_id=?;", (new_fname), (user_to_edit))
+                        cursor.execute("UPDATE Users SET u_fname=? WHERE user_id=?;", (new_fname), (user_to_edit))
                         print("\nFirst name updated successfully.")
                         break
 
@@ -810,7 +808,7 @@ def man_edit_user():
                         print('\n<!The user must contain a last name!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_lname=? WHERE user_id=?;", (new_lname), (user_to_edit))
+                        cursor.execute("UPDATE Users SET u_lname=? WHERE user_id=?;", (new_lname), (user_to_edit))
                         print("\nLast name updated succesfully.")
                         break
 
@@ -826,7 +824,7 @@ def man_edit_user():
                         print("\n<!Please exclude all special characters!>")
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_phone=? WHERE user_id=?;", (new_phone, user_to_edit))
+                        cursor.execute("UPDATE Users SET u_phone=? WHERE user_id=?;", (new_phone, user_to_edit))
                         print("\nPhone number updated successfully.")
                         break
 
@@ -847,7 +845,7 @@ def man_edit_user():
                         print('\n<!The email must be unique!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_email=? WHERE user_id=?;", (new_email, user_to_edit))
+                        cursor.execute("UPDATE Users SET u_email=? WHERE user_id=?;", (new_email, user_to_edit))
                         print("\nUser email updated successfully.")
 
 
@@ -868,7 +866,7 @@ def man_edit_user():
                         print('\n<!The user password must be unique!>')
                         continue
                     else:
-                        # cursor.execute("UPDATE Users SET u_password=? WHERE user_id=?;", (u_password, user_to_edit))
+                        cursor.execute("UPDATE Users SET u_password=? WHERE user_id=?;", (u_password, user_to_edit))
                         print("\nPassword updated successfully")
                         break
 
@@ -887,7 +885,7 @@ def man_edit_user():
                     print("\n<!The active status must be 1 or 0!>")
                     continue
                 else:
-                    # cursor.execute("UPDATE Users SET is_active=? WHERE user_id=?;", (active, user_to_edit))
+                    cursor.execute("UPDATE Users SET is_active=? WHERE user_id=?;", (active, user_to_edit))
                     print("\nActive status updated successfully.")
 
 
@@ -904,7 +902,7 @@ def man_edit_user():
                         break
 
                     if date_test(date_hired):
-                        # cursor.execute("UPDATE Users SET date_hired=? WHERE user_id=?;", (date_hired, user_to_edit))
+                        cursor.execute("UPDATE Users SET date_hired=? WHERE user_id=?;", (date_hired, user_to_edit))
                         print("\nDate updated successfully.")
                         break
                     
@@ -932,7 +930,7 @@ def man_edit_user():
                         continue
 
                     else:
-                        # cursor.execute("UPDATE Users SET is_manager=? WHERE user_id=?;", (man_status, user_to_edit))
+                        cursor.execute("UPDATE Users SET is_manager=? WHERE user_id=?;", (man_status, user_to_edit))
                         print("\nManager status updated successfully.")
                         break
 
@@ -1329,8 +1327,10 @@ def login():
         is_manager = corr_password[0][1]
         password = corr_password[0][0]
 
+
         while True:
             password = input("\nPlease enter your password:\n>>>>")
+            print(password)
             if password != corr_password[0][0]:
                 print("\n<!Incorrect Password!>")
                 return False, is_manager, password
@@ -1411,32 +1411,111 @@ def main_menu(is_manager, user_email, user_password):
 
     def manager_menu(u_firstname, user_id, u_email, u_password):
         def view_menu():
-            choices = ['a', 's', 'c', 'e']
             while True:
+                choices = ['a', 's', 'c', 'e']
                 choice = input("\nWould you like to view:\n(A)ll Users\n(S)earch for a User\n(C)ompetency Assessment Result\n(E)xit\n>>>>")
                 if choice.lower() not in choices:
                     print("\n<!Please enter one of the choices above!>")
                     continue
 
                 elif choice.lower() == choices[3]:
-                    print("Exited.")
+                    print("\nExited.")
                     break
 
                 elif choice.lower() == choices[0]:
                     view_all_users()
                     continue
 
-                # # GET THIS WIRED UP!!!!!!!!!!!!!
-                # elif choice.lower() == choices[1]:
-                #     search_user()
-                #     continue
+                elif choice.lower() == choices[1]:
+                    f_name = input("\nPlease enter the first name. (enter) if n/a.\n>>>>")
+                    l_name = input("\nPlease enter the last name. (enter) if n/a.\n>>>>")
+                    search_user(f_name, l_name)
+                    continue
 
-                # # GET THIS WIRED UP!!!!!!!!!!!!!!!
-                # elif choice.lower() == choices[2]:
-                #     competency_assessment_results()
-                #     continue
+                # GET THIS WIRED UP!!!!!!!!!!!!!!!
+                elif choice.lower() == choices[2]:
+                    while True:
+                        choices = ['u', 'c', 'e']
+                        choice = input("\nWould you like to search by:\n(U)ser\n(C)ompetency\n(E)xit\n>>>>")
+                        if choice.lower() not in choices:
+                            print(choice.lower())
+                            print(choices)
+                            print("urmom")
+                            print("\n<!Please enter one of the choices above!>")
+                            continue
+
+                        elif choice.lower() == choices[2]:
+                            print("\nExited.")
+                            break
+                         
+                        elif choice.lower() == choices[0]:
+                            f_name = input("\nPlease enter the first name. (enter) if n/a.\n>>>>")
+                            l_name = input("\nPlease enter the last name. (enter) if n/a.\n>>>>")
+                            search_user(f_name, l_name)
+                            u_id = input("\nPlease enter the User ID of the user you would like to view:\n>>>>")
+                            competency_assessment_results(int(u_id))
+                            continue
+
+                        elif choice.lower() == choices[1]:
+                            ids = []
+                            while True:
+                                competencies = cursor.execute("SELECT comp_id, comp_name FROM Competencies").fetchall()
+                                print("\nComp ID  | Comp Name")
+                                print("--------------------")
+                                for competency in competencies:
+                                    comp_id, comp_name = competency
+                                    comp_id = comp_id if comp_id != None else ''
+                                    comp_name = comp_name if comp_name != None else ''
+                                    ids.append(comp_id)
+                                
+                                    print(f"{comp_id:<2} | {comp_name}")
+
+                                search_comp = input("\nPlease enter the id of the competency you would like to search for.\n>>>>")
+                                if not search_comp.isnumeric():
+                                    print("\n<!The ID must be numeric!>")
+                                    continue
+
+                                elif int(search_comp) not in ids:
+                                    print("\n<!Please enter an ID from the list above!>")
+                                    continue
+
+                                else:
+                                    redo = False
+                                    while True:
+                                        search_comp = int(search_comp)
+                                        assessments = cursor.execute("SELECT * FROM Assessments WHERE comp_tested=?", (search_comp,)).fetchall()
+                                        if not assessments:
+                                            choices = ['y', 'n']
+                                            while True:  
+                                                choice = input("\nThere are no assessments testing that competency. Would you like to re-search?\n(y) or (n):\n>>>>")
+                                                if choice.lower() not in choices:
+                                                    print("\n<!Please enter one of the choices above!>")
+                                                    continue
+
+                                                elif choice.lower() == choices[0]:
+                                                    redo = True
+                                                    break
+
+                                                elif choice.lower() == choices[1]:
+                                                    break
+                                            
+                                            break
+                                        
+                                        break
+
+                                if redo == True:
+                                    continue
+
+                                else:
+                                    # cars = 
+                                    break
+
+
+                                    #GET THE ASSESSMENT ID FROM USER SO THAT IT CAN DISPLAY
+                                    #THE CARs FOR THE COMPETENCY THE USER WANTS
 
         
+
         def edit_menu():
             choices = ['u', 'c', 'a', 'e']
             while True:
@@ -1500,7 +1579,7 @@ def main_menu(is_manager, user_email, user_password):
         print(f"\n\nWelcome to the manager screen, {u_firstname}.")
         while True:
             choices = ['v', 'e', 'a', 'd', 'q']
-            choice = input("\nWould you like to:\n(V)iew/Search for User\n(E)dit User Info\n(D)elete a Competency Assessment Result\n(Q)uit")
+            choice = input("\nWould you like to:\n(V)iew/Search for User\n(E)dit User Info\n(D)elete a Competency Assessment Result\n(Q)uit\n>>>>")
             if choice.lower() not in choices:
                 print("\n<!Please enter one of the choices above!>")
                 continue
